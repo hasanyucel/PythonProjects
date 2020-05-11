@@ -1,2 +1,2 @@
 # PythonProjects
-ilk değişiklik!
+vs ilk değişiklik!
