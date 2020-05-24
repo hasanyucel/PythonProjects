@@ -1,4 +1,4 @@
 # Write a Python program to locate Python site-packages.
 
-import site; 
+import site
 print(site.getsitepackages())
