@@ -1,0 +1,16 @@
+--------------------
+Date: 12:6:2020
+Time: 15:20
+Phone number: +9xxxxxx
+Message: Test
+--------------------
+Date: 12:6:2020
+Time: 15:22
+Phone number: +9xxxxxx
+Message: bu bir denemedir
+--------------------
+Date: 12:6:2020
+Time: 15:24
+Phone number: +9xxxxxx
+Message: bu bir denemedir
+--------------------
