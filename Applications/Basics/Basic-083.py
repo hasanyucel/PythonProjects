@@ -9,3 +9,11 @@ def greater_or_not(number):
 
     
 print(greater_or_not(9))
+
+#w3sources answer
+
+num = [2,3,4]
+print()
+print(all(x > 1 for x in num))
+print(all(x > 4 for x in num))
+print()
