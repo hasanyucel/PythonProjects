@@ -44,7 +44,7 @@ def find_followers_of_user():
             time.sleep(3)
 
             follow_button = driver.find_elements_by_xpath("//input[@aria-label='Follow this person']")
-
+            #follow_button = driver.find_elements_by_xpath("//input[@aria-label='Unfollow this person']")
             try:
                 for i in follow_button:
                     i.submit()
