@@ -54,5 +54,5 @@ def find_followers_of_user():
     driver.close()
 
 login_github("https://github.com/login")
-go_followers_page_of_user("torvalds") #Enter a user to follow the followings of the users
+go_followers_page_of_user("hasanyucel") #Enter a user to follow the followings of the users
 find_followers_of_user()
