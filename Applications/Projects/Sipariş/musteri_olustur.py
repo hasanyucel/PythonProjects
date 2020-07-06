@@ -1,5 +1,4 @@
 import random
-import linecache
 
 def satir_getir(yol):
     dosya = open(yol,"r",encoding="utf8")
