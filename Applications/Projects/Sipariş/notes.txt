@@ -1,0 +1,3 @@
+- Sipariş Numarası oluşturma (GGAAYYYYMS01, GGAAYYYYMS02, GGAAYYYYMS03) (Tamamlandı)
+- Müşteri Oluşturma (Random kütüphanesi kullanılarak isim, soyisim, telefon, mahalle üretilecek)
+- Parçaya Göre Model Bulma (Parçaların karşılarında uygun olan modeller yazacak)
