@@ -36,5 +36,5 @@ def tarihi_kontrol_et():
     db.close()
     return sonuc
 
-#sip_no = tarihi_kontrol_et()
-#print(sip_no)
+sip_no = tarihi_kontrol_et()
+print(sip_no)
