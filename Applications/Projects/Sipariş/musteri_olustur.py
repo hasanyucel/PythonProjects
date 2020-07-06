@@ -9,6 +9,12 @@ def satir_getir(yol):
     dosya.close()
     return satir
 
+def numara_olustur():
+    numara = random.randint(1000000,9999999)
+    return ("0352"+str(numara))
+
 ad = satir_getir("isimler.txt").replace("\n","")
 soyad = satir_getir("soyisimler.txt").replace("\n","")
+numara = numara_olustur()
 print(ad,soyad)
+print(numara)   
