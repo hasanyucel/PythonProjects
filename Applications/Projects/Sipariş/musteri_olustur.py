@@ -13,12 +13,12 @@ def numara_olustur():
     return ("0352"+str(numara))
 
 def adres_olustur():
-    lst=["MELİKGAZİ","KOCASİNAN"]
+    lst=["MELIKGAZI","KOCASINAN"]
     mah = random.choice(lst)
     path=""
-    if(mah=="MELİKGAZİ"):
+    if(mah=="MELIKGAZI"):
         path = "melikgazi_mahalleleri.txt"
-    elif(mah=="KOCASİNAN"):
+    elif(mah=="KOCASINAN"):
         path = "kocasinan_mahalleleri.txt"
     return mah+"/"+satir_getir(path).replace("\n","")
 
@@ -27,5 +27,5 @@ soyad = satir_getir("soyisimler.txt")
 numara = numara_olustur()
 adres = adres_olustur()
 print(ad,soyad)
-print(numara)   
+print(numara)
 print(adres)
