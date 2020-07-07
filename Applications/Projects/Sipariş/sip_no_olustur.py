@@ -1,7 +1,7 @@
 import sqlite3
 import datetime
 
-db_name = "gunluk_sip_no.db"
+db_name = "gunluk_sip_adedi.db"
 
 def db_olustur():
     db = sqlite3.connect(db_name)

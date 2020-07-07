@@ -17,13 +17,13 @@ def adres_olustur():
     mah = random.choice(lst)
     path=""
     if(mah=="MELIKGAZI"):
-        path = "melikgazi_mahalleleri.txt"
+        path = "mahalleler//melikgazi.txt"
     elif(mah=="KOCASINAN"):
-        path = "kocasinan_mahalleleri.txt"
+        path = "mahalleler//kocasinan.txt"
     return mah+"/"+satir_getir(path).replace("\n","")
 
-ad = satir_getir("isimler.txt")
-soyad = satir_getir("soyisimler.txt")
+ad = satir_getir("musteriler//isimler.txt")
+soyad = satir_getir("musteriler//soyisimler.txt")
 numara = numara_olustur()
 adres = adres_olustur()
 print(ad,soyad)
