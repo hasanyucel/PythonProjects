@@ -22,10 +22,12 @@ def adres_olustur():
         path = "mahalleler//kocasinan.txt"
     return mah+"/"+satir_getir(path).replace("\n","")
 
-ad = satir_getir("musteriler//isimler.txt")
-soyad = satir_getir("musteriler//soyisimler.txt")
-numara = numara_olustur()
-adres = adres_olustur()
-print(ad,soyad)
-print(numara)
-print(adres)
+def musteri_ad_olustur():
+    return satir_getir("musteriler//isimler.txt")
+
+def musteri_soyad_olustur():
+    return satir_getir("musteriler//soyisimler.txt")
+
+def model_bul(kod):
+    yol = "modeller//"+kod+".txt"
+    return satir_getir(yol)
