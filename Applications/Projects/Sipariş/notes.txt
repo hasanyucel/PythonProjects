@@ -1,3 +1,14 @@
 - Sipariş Numarası oluşturma (GGAAYYYYMS01, GGAAYYYYMS02, GGAAYYYYMS03) (Tamamlandı)
 - Müşteri Oluşturma (Random kütüphanesi kullanılarak isim, soyisim, telefon, mahalle üretilecek) (Tamamlandı)
 - Parçaya Göre Model Bulma (Parçaların karşılarında uygun olan modeller yazacak) (Tamamlandı)
+- Giriş Yap
+- Yönetime Git
+- Sipariş Sayfasını Aç
+- Sipariş Numarasını Gir
+- Müşteri Oluşturmayı Aç ve Müşteri Oluştur.
+- Model Oluştur.
+- Semptomları, açıklamaları ve teknisyen, saat bilgisini gir ve kaydet.
+- Statüleri ayarla
+- Parça Ekle
+- Kaydet
+
