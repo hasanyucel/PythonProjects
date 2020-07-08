@@ -30,4 +30,4 @@ def musteri_soyad_olustur():
 
 def model_bul(kod):
     yol = "modeller//"+kod+".txt"
-    return satir_getir(yol)
+    return satir_getir(yol).replace("\t","")
