@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from keyboard import press
 
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 
 def login_gspn(website):
     driver.get(website)
