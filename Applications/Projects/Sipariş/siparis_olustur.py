@@ -11,17 +11,15 @@ from selenium.webdriver.support import expected_conditions as EC
 driver = webdriver.Chrome()
 
 def login_gspn(website):
-
     driver.get(website)
     Alert(driver).accept()
-
-    time.sleep(5)
-    driver.find_element_by_name("").send_keys(Keys.ENTER)
-    time.sleep(5)
-    
-    username = driver.find_element_by_css_selector("#login_form_all > div.login_form > dl > dd.user_id > input")
-
+    wait = WebDriverWait(driver, 10)
+    username = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/dl/dd[1]/input""")))
+    password = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/dl/dd[2]/input""")))
     username.send_keys("user")
+    password.send_keys("pass")
+    login_form = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/img""")))
+    login_form.click()
 
 
 login_gspn("https://gspn1.samsungcsportal.com/")

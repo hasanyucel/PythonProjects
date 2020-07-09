@@ -1,7 +1,7 @@
 - Sipariş Numarası oluşturma (GGAAYYYYMS01, GGAAYYYYMS02, GGAAYYYYMS03) (Tamamlandı)
 - Müşteri Oluşturma (Random kütüphanesi kullanılarak isim, soyisim, telefon, mahalle üretilecek) (Tamamlandı)
 - Parçaya Göre Model Bulma (Parçaların karşılarında uygun olan modeller yazacak) (Tamamlandı)
-- Giriş Yap
+- Giriş Yap (Tamamlandı)
 - Yönetime Git
 - Sipariş Sayfasını Aç
 - Sipariş Numarasını Gir
