@@ -16,10 +16,16 @@ def login_gspn(website):
     wait = WebDriverWait(driver, 10)
     username = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/dl/dd[1]/input""")))
     password = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/dl/dd[2]/input""")))
-    username.send_keys("user")
-    password.send_keys("pass")
+    usercr = get_username_password()
+    username.send_keys(usercr[0])
+    password.send_keys(usercr[1])
     login_form = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/img""")))
     login_form.click()
 
+def get_username_password():
+    dosya = open("D:\\user.txt","r",encoding="utf8",errors='ignore')
+    line = dosya.readline()
+    print(line)
+    return line.split(",")
 
 login_gspn("https://gspn1.samsungcsportal.com/")
