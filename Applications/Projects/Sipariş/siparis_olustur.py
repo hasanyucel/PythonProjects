@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from keyboard import press
 
 driver = webdriver.Chrome()
 
@@ -21,6 +22,8 @@ def login_gspn(website):
     password.send_keys(usercr[1])
     login_form = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/img""")))
     login_form.click()
+    time.sleep(10)
+    press('enter')
 
 def get_username_password():
     dosya = open("D:\\user.txt","r")
