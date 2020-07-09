@@ -23,9 +23,8 @@ def login_gspn(website):
     login_form.click()
 
 def get_username_password():
-    dosya = open("D:\\user.txt","r",encoding="utf8",errors='ignore')
-    line = dosya.readline()
-    print(line)
+    dosya = open("D:\\user.txt","r")
+    line = dosya.readline() 
     return line.split(",")
 
 login_gspn("https://gspn1.samsungcsportal.com/")
