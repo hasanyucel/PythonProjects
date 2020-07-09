@@ -2,7 +2,7 @@
 - Müşteri Oluşturma (Random kütüphanesi kullanılarak isim, soyisim, telefon, mahalle üretilecek) (Tamamlandı)
 - Parçaya Göre Model Bulma (Parçaların karşılarında uygun olan modeller yazacak) (Tamamlandı)
 - Giriş Yap (Tamamlandı)
-- Yönetime Git
+- Yönetime Git (Tamamlandı)
 - Sipariş Sayfasını Aç
 - Sipariş Numarasını Gir
 - Müşteri Oluşturmayı Aç ve Müşteri Oluştur.

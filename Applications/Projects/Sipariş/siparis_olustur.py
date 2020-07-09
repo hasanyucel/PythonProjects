@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from keyboard import press
 
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
 
 def login_gspn(website):
     driver.get(website)
@@ -25,9 +25,15 @@ def login_gspn(website):
     time.sleep(10)
     press('enter')
 
+def go_management_page():   
+    wait = WebDriverWait(driver, 10)
+    management = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="MAIN_04"]/span""")))
+    management.click()
+
 def get_username_password():
     dosya = open("D:\\user.txt","r")
     line = dosya.readline() 
     return line.split(",")
 
 login_gspn("https://gspn1.samsungcsportal.com/")
+go_management_page()
