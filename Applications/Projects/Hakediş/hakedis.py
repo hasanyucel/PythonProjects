@@ -1,4 +1,5 @@
 import time
+import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -18,10 +19,10 @@ def login_gspn(website):
     usercr = get_username_password()
     username.send_keys(usercr[0])
     password.send_keys(usercr[1])
-    # login_form = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/img""")))
-    # login_form.click()
-    # time.sleep(10)
-    # press('enter')
+    login_form = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/img""")))
+    login_form.click()
+    time.sleep(10)
+    press('enter')
 
 def go_management_page():   
     wait = WebDriverWait(driver, 10)
@@ -29,8 +30,11 @@ def go_management_page():
     management.click()
 
 def get_username_password():
-    dosya = open("D:\\user2.txt","r")
+    dosya = open("D:\\user.txt","r",encoding="utf-8")
     line = dosya.readline() 
+    print(line)
+    print(sys.getdefaultencoding())
+    print(sys.stdout.encoding)
     return line.split(",")
 
 login_gspn("https://gspn1.samsungcsportal.com/")
