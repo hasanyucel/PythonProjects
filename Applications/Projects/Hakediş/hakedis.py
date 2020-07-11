@@ -21,21 +21,28 @@ def login_gspn(website):
     password.send_keys(usercr[1])
     login_form = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/img""")))
     login_form.click()
-    time.sleep(10)
-    press('enter')
-
-def go_management_page():   
-    wait = WebDriverWait(driver, 10)
-    management = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="MAIN_04"]/span""")))
+    Alert(driver).accept()
+    driver.switch_to_frame("menu")
+    management = wait.until(EC.element_to_be_clickable((By.XPATH, """//*[@id="MAIN_04"]/span""")))
     management.click()
+
+    time.sleep(5)
+    driver.switch_to_default_content()
+    time.sleep(1)
+    driver.switch_to_frame("body")
+    time.sleep(1)
+    driver.switch_to_frame("leftMenus")
+    time.sleep(1)
+    driver.switch_to_frame("b2BLeftMenuScroll")
+    time.sleep(1)
+    
+    html = driver.page_source
+    print(html)
 
 def get_username_password():
     dosya = open("D:\\user.txt","r",encoding="utf-8")
     line = dosya.readline() 
     print(line)
-    print(sys.getdefaultencoding())
-    print(sys.stdout.encoding)
     return line.split(",")
 
 login_gspn("https://gspn1.samsungcsportal.com/")
-go_management_page()
