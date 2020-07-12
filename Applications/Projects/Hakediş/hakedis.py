@@ -10,6 +10,7 @@ from keyboard import press
 
 driver = webdriver.Chrome()
 wait = WebDriverWait(driver, 10)
+temp = ""
 
 def login_gspn(website):
     driver.get(website)
@@ -41,10 +42,24 @@ def get_name_surname(is_emri):
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="rightContents"]""")))
     input_is_emri = wait.until(EC.presence_of_element_located((By.ID, """service_order_no""")))
+    input_is_emri.send_keys(Keys.DELETE)
     input_is_emri.send_keys(is_emri)
     input_is_emri.send_keys(Keys.ENTER)
     name_surname = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[1]/td[1]/form/table[11]/tbody/tr[2]/td[1]"""))).text
+
+    if(name_surname == "" or name_surname is None):
+        name_surname = "No Result"
+
     return name_surname
+
+def read_data_from_txt(path):
+    file = open(path, 'r') 
+    Lines = file.readlines() 
+    for line in Lines: 
+        go_work_order()
+        time.sleep(5)
+        print(line.strip(),get_name_surname(line.strip()))
+
 
 def get_username_password():
     dosya = open("D:\\user.txt","r",encoding="utf-8")
@@ -54,6 +69,5 @@ def get_username_password():
 
 login_gspn("https://gspn1.samsungcsportal.com/")
 go_management()
+read_data_from_txt('hakedisnote.txt')
 
-go_work_order()
-print(get_name_surname("4233723623"))
