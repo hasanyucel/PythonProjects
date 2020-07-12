@@ -22,20 +22,14 @@ def login_gspn(website):
     login_form = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/img""")))
     login_form.click()
     Alert(driver).accept()
-    driver.switch_to_frame("menu")
+    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[2]""")))
     management = wait.until(EC.element_to_be_clickable((By.XPATH, """//*[@id="MAIN_04"]/span""")))
     management.click()
-
-    time.sleep(5)
     driver.switch_to_default_content()
-    time.sleep(1)
-    driver.switch_to_frame("body")
-    time.sleep(1)
-    driver.switch_to_frame("leftMenus")
-    time.sleep(1)
-    driver.switch_to_frame("b2BLeftMenuScroll")
-    time.sleep(1)
-    
+    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))
+    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="leftMenus"]""")))
+    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="b2BLeftMenuScroll"]""")))
+
     html = driver.page_source
     print(html)
 
