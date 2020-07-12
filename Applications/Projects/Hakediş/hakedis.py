@@ -36,6 +36,15 @@ def go_work_order():
     st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[2]/td/table/tbody/tr[4]/td""")))
     st.click()
 
+def get_name_surname(is_emri):
+    driver.switch_to_default_content()
+    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))
+    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="rightContents"]""")))
+    input_is_emri = wait.until(EC.presence_of_element_located((By.ID, """service_order_no""")))
+    input_is_emri.send_keys(is_emri)
+    input_is_emri.send_keys(Keys.ENTER)
+    name_surname = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[1]/td[1]/form/table[11]/tbody/tr[2]/td[1]"""))).text
+    return name_surname
 
 def get_username_password():
     dosya = open("D:\\user.txt","r",encoding="utf-8")
@@ -45,4 +54,6 @@ def get_username_password():
 
 login_gspn("https://gspn1.samsungcsportal.com/")
 go_management()
+
 go_work_order()
+print(get_name_surname("4233723623"))
