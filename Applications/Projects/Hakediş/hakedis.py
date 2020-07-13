@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from keyboard import press
 
 driver = webdriver.Chrome()
-wait = WebDriverWait(driver, 10)
+wait = WebDriverWait(driver, 15)
 temp = ""
 
 def login_gspn(website):
@@ -53,16 +53,17 @@ def get_name_surname(is_emri):
     return name_surname
 
 def read_data_from_txt(path):
-    file = open(path, 'r') 
+    file = open(path, 'r',encoding='cp1252') 
     Lines = file.readlines() 
     for line in Lines: 
         go_work_order()
-        time.sleep(5)
+        time.sleep(2)
         print(line.strip(),get_name_surname(line.strip()))
+        time.sleep(3)
 
 
 def get_username_password():
-    dosya = open("D:\\user.txt","r",encoding="utf-8")
+    dosya = open("D:\\user.txt","r",encoding='cp1252')
     line = dosya.readline() 
     print(line)
     return line.split(",")
