@@ -1,12 +1,12 @@
 import time
 import sys
+from openpyxl import Workbook,load_workbook
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from keyboard import press
 
 driver = webdriver.Chrome()
 wait = WebDriverWait(driver, 15)
@@ -53,20 +53,28 @@ def get_name_surname(is_emri):
     return name_surname
 
 def read_data_from_txt(path):
-    file = open(path, 'r',encoding='cp1252') 
+    file = open(path, "r") 
     Lines = file.readlines() 
     for line in Lines: 
         go_work_order()
-        time.sleep(2)
-        print(line.strip(),get_name_surname(line.strip()))
-        time.sleep(3)
-
+        time.sleep(4)
+        # print(line.strip(),get_name_surname(line.strip()))
+        export_results(line.strip(),get_name_surname(line.strip()))
+        time.sleep(5)
 
 def get_username_password():
-    dosya = open("D:\\user.txt","r",encoding='cp1252')
+    dosya = open("D:\\user.txt","r")
     line = dosya.readline() 
     print(line)
     return line.split(",")
+
+def export_results(res_is_emri,res_name_surname):
+    wb = load_workbook("output.xlsx")
+    ws = wb.active
+    # ws = wb.create_sheet("Result")
+    ws.append((res_is_emri,res_name_surname))
+    wb.save("output.xlsx")
+    wb.close()
 
 login_gspn("https://gspn1.samsungcsportal.com/")
 go_management()
