@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-class Part:
+class ParseProduct:
     def __init__(self,link):
         r = requests.get(link)
         source = BeautifulSoup(r.content,"lxml")
