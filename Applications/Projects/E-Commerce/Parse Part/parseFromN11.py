@@ -7,5 +7,6 @@ class ParseProduct:
         source = BeautifulSoup(r.content,"lxml")
         self.partName = source.select('h1.proName')[0].text.strip()
         self.partTitle = source.select('h2.proSubName')[0].text.strip()
-        self.cost = (source.select('div.newPrice')[0].find('ins')).text.strip()
+        self.partCost = (source.select('div.newPrice')[0].find('ins')).text.strip()
+        self.partDetails = (source.select('div.panelContent')[0]).text.strip()
 
