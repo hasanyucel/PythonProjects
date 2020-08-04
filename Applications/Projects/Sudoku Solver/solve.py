@@ -13,11 +13,11 @@ sudoku = np.array([ [7, 8, 0, 4, 0, 0, 1, 2, 0],
 def print_sudoku(sudoku):
     for i in range(len(sudoku)):
         if i % 3 == 0 and i != 0:
-            print("- - - - - - - - - - - -")
+            print("---------------------")
 
         for j in range(len(sudoku[0])):
             if j % 3 == 0 and j != 0:
-                print(" | ", end="")
+                print("| ", end="")
 
             if j == 8:
                 print(sudoku[i][j])
