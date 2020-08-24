@@ -10,5 +10,5 @@ m_adres = mo.adres_olustur()
 model = mo.model_bul("BN59-01220D")
 
 
-# og.login_gspn("https://gspn1.samsungcsportal.com/")
-# og.go_management()
+og.login_gspn("https://gspn1.samsungcsportal.com/")
+og.go_management()

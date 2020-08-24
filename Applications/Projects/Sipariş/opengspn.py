@@ -1,6 +1,5 @@
 import time
 import sys
-from openpyxl import Workbook,load_workbook
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -33,11 +32,11 @@ def go_work_order():
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="leftMenus"]""")))
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="b2BLeftMenuScroll"]""")))
-    st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[2]/td/table/tbody/tr[4]/td""")))
+    st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td""")))
     st.click()
 
 def get_username_password():
-    dosya = open("D:\\user.txt","r")
+    dosya = open("D:\\user.txt","r",encoding="utf8")
     line = dosya.readline() 
     print(line)
     return line.split(",")
