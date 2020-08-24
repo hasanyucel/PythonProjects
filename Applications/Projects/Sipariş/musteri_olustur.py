@@ -20,7 +20,7 @@ def adres_olustur():
         path = "mahalleler//melikgazi.txt"
     elif(mah=="KOCASINAN"):
         path = "mahalleler//kocasinan.txt"
-    return mah+"/"+satir_getir(path).replace("\n","")
+    return satir_getir(path).replace("\n","")
 
 def musteri_ad_olustur():
     return satir_getir("musteriler//isimler.txt")
