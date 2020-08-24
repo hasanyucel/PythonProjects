@@ -59,7 +59,6 @@ def musteri_ekle():
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/body/table/tbody/tr/td/table/tbody/tr/td[2]/iframe""")))
     musteri_formu = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[6]/td/div/table[1]/tbody/tr/td/table/tbody/tr[1]/td[2]/table/tbody/tr/td[3]/table/tbody/tr/td[2]/a""")))
     musteri_formu.click()
-    # main_window = driver.window_handles[0]
     name_surname_window = driver.window_handles[1]
     driver.switch_to_window(name_surname_window)
     yeni = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[3]/table[1]/tbody/tr/td[2]/table/tbody/tr/td[2]/a""")))
