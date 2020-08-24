@@ -2,9 +2,9 @@ import random
 
 def satir_getir(yol):
     dosya = open(yol,"r",encoding="utf8",errors='ignore')
-    lines = dosya.readlines()
-    rand_line = random.randint(0,len(lines)-1)
-    satir = (lines[rand_line])
+    satirlar = dosya.readlines()
+    rasgele_satir = random.randint(0,len(satirlar)-1)
+    satir = (satirlar[rasgele_satir])
     dosya.close()
     return satir.replace("\n","")
 
@@ -15,12 +15,12 @@ def numara_olustur():
 def adres_olustur():
     lst=["MELIKGAZI","KOCASINAN"]
     mah = random.choice(lst)
-    path=""
+    yol=""
     if(mah=="MELIKGAZI"):
-        path = "mahalleler//melikgazi.txt"
+        yol = "mahalleler//melikgazi.txt"
     elif(mah=="KOCASINAN"):
-        path = "mahalleler//kocasinan.txt"
-    return satir_getir(path).replace("\n","")
+        yol = "mahalleler//kocasinan.txt"
+    return satir_getir(yol).replace("\n","")
 
 def musteri_ad_olustur():
     return satir_getir("musteriler//isimler.txt")

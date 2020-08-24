@@ -10,9 +10,9 @@ def db_olustur():
     db.commit()
     db.close()
 
-def tarihi_kontrol_et():
+def siparis_no_olustur():
     db_olustur()
-    result = 0
+    gecici_degisken = 0
     sonuc = ""
     x = datetime.datetime.now()
     trh = (x.strftime("%d-%m-%Y")).replace("-","")
@@ -28,13 +28,10 @@ def tarihi_kontrol_et():
     # varsa sip_sayisinin değişkenini al bir arttır update et return sip_sayisi+1
     else:
         imlec.execute("SELECT sip_sayisi FROM counter WHERE tarih=?", [trh])
-        records = imlec.fetchone()
-        result = records[0] + 1
-        imlec.execute("UPDATE counter set sip_sayisi = ? where tarih = ?", (result,trh))
-        sonuc = trh+"MS"+str("{:02d}".format(result))
+        kayitlar = imlec.fetchone()
+        gecici_degisken = kayitlar[0] + 1
+        imlec.execute("UPDATE counter set sip_sayisi = ? where tarih = ?", (gecici_degisken,trh))
+        sonuc = trh+"MS"+str("{:02d}".format(gecici_degisken))
     db.commit()
     db.close()
     return sonuc
-
-def siparis_no_olustur():
-    return tarihi_kontrol_et()
