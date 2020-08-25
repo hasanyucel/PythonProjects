@@ -115,7 +115,7 @@ def urun_bilgilerini_gir(malzeme_kodu):
         driver.switch_to_alert().accept()
     except:
         pass
-    s_tipi = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[8]/tbody/tr[1]/td[2]/select/option[4]""")))
+    s_tipi = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[8]/tbody/tr[1]/td[2]/select/option[2]""")))
     s_tipi.click()
     m_sikayet1 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[11]/tbody/tr/td[2]/table/tbody/tr/td[1]/select/option[13]""")))
     m_sikayet1.click()
