@@ -166,5 +166,6 @@ def parca_ekle(malzeme_kodu):
     wait.until(EC.alert_is_present())
     driver.switch_to_alert().accept()
     time.sleep(5)
-    driver.quit()
+    # driver.close()
+    # driver.quit()
     
