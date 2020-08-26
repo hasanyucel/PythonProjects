@@ -15,7 +15,7 @@ import musteri_olustur as mo
 # chrome_options.add_experimental_option("prefs",prefs)
 # driver = webdriver.Chrome(chrome_options=chrome_options)
 driver = webdriver.Chrome()
-wait = WebDriverWait(driver, 15)
+wait = WebDriverWait(driver, 20)
 
 def gspn_giris(website):
     driver.get(website)
