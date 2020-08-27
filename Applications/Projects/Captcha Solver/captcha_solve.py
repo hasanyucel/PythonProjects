@@ -1,21 +1,20 @@
 import numpy as np
 from cv2 import cv2
 
-image = cv2.imread('2.png')
-cv2.imshow("image",image)
+img = cv2.imread('2.png')
+cv2.imshow("img",img)
 
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) 
-cv2.imshow("gri",gray)
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+cv2.imshow("gray",gray)
 
-cizgi = cv2.threshold(gray, 40, 200, cv2.THRESH_BINARY_INV)[1]
-cv2.imshow("cizgi",cizgi)
+thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2)
+cv2.imshow("thresh",thresh)
 
-res = gray+cizgi
+line = cv2.threshold(gray, 40, 255, cv2.THRESH_BINARY_INV)[1]
+cv2.imshow("line",line)
+
+res = thresh+line
 cv2.imshow("res",res)
-
-other = cv2.threshold(res, 60, 255, cv2.THRESH_BINARY_INV)[1]
-cv2.imshow("other",other)
-
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
