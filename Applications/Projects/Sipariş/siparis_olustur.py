@@ -141,9 +141,8 @@ def urun_bilgilerini_gir(malzeme_kodu):
     driver.switch_to_alert().accept()
     update = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[5]/tbody/tr[2]/td[5]/table/tbody/tr/td[2]/a""")))
     update.click()
-    parca_ekle(malzeme_kodu)
 
-def parca_ekle(malzeme_kodu):
+def parca_ekle_ve_iste(malzeme_kodu):
     driver.switch_to_default_content()
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/body/table/tbody/tr/td/table/tbody/tr/td[2]/iframe""")))
@@ -166,6 +165,7 @@ def parca_ekle(malzeme_kodu):
     wait.until(EC.alert_is_present())
     driver.switch_to_alert().accept()
     time.sleep(5)
-    # driver.close()
-    # driver.quit()
-    
+
+def tarayici_kapat():
+    driver.close()
+    driver.quit()
