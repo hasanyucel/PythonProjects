@@ -1,7 +1,7 @@
 import numpy as np
 from cv2 import cv2
 
-img = cv2.imread('3.png')
+img = cv2.imread('5.png')
 cv2.imshow("img",img)
 
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -20,6 +20,14 @@ cv2.imshow("dilation",dilation)
 
 res = thresh+dilation
 cv2.imshow("res",res)
+
+kernel2 = np.ones((2,2),np.uint8)
+erode = cv2.erode(gray,kernel2,iterations = 1)
+cv2.imshow("erode",erode)
+
+kernel2 = np.ones((2,2),np.uint8)
+d2 = cv2.dilate(erode,kernel2,iterations = 1)
+cv2.imshow("d2",d2)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
