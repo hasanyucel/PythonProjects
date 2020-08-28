@@ -1,14 +1,20 @@
 import numpy as np
 from cv2 import cv2
 
-img = cv2.imread('5.png')
+img = cv2.imread('10.png')
 cv2.imshow("img",img)
 
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+croppedImg = img[0:46, 10:190]
+cv2.imshow("croppedImg",croppedImg)
+
+gray = cv2.cvtColor(croppedImg, cv2.COLOR_BGR2GRAY)
 cv2.imshow("gray",gray)
 
+kernel2 = np.ones((2,2),np.uint8)
+erode = cv2.erode(gray,kernel2,iterations = 1)
+cv2.imshow("erode",erode)
 
-thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2)
+thresh = cv2.adaptiveThreshold(erode,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2)
 cv2.imshow("thresh",thresh)
 
 line = cv2.threshold(gray, 40, 255, cv2.THRESH_BINARY_INV)[1]
@@ -22,11 +28,7 @@ res = thresh+dilation
 cv2.imshow("res",res)
 
 kernel2 = np.ones((2,2),np.uint8)
-erode = cv2.erode(gray,kernel2,iterations = 1)
-cv2.imshow("erode",erode)
-
-kernel2 = np.ones((2,2),np.uint8)
-d2 = cv2.dilate(erode,kernel2,iterations = 1)
+d2 = cv2.dilate(res,kernel2,iterations = 1)
 cv2.imshow("d2",d2)
 
 cv2.waitKey(0)
