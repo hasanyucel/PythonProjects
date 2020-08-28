@@ -7,10 +7,6 @@ cv2.imshow("img",img)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 cv2.imshow("gray",gray)
 
-blur = cv2.GaussianBlur(gray,(5,5),0)
-cv2.imshow("blur",blur)
-bilateral = cv2.bilateralFilter(gray,5,75,75)
-cv2.imshow("bilateral",bilateral)
 
 thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2)
 cv2.imshow("thresh",thresh)

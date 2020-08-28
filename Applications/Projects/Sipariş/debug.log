@@ -1,0 +1,4 @@
+[0828/080259.722:ERROR:process_reader_win.cc(123)] NtOpenThread: {Eriþim Yok} Bir iþlem bir nesneye eriþmek istedi, ancak istediði eriþimin haklarý kendisine verilmiþ deðil. (0xc0000022)
+[0828/080259.724:ERROR:exception_snapshot_win.cc(98)] thread ID 14728 not found in process
+[0828/080259.748:ERROR:process_reader_win.cc(123)] NtOpenThread: {Eriþim Yok} Bir iþlem bir nesneye eriþmek istedi, ancak istediði eriþimin haklarý kendisine verilmiþ deðil. (0xc0000022)
+[0828/080259.748:ERROR:exception_snapshot_win.cc(98)] thread ID 17488 not found in process
