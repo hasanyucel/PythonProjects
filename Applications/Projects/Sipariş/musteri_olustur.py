@@ -13,14 +13,19 @@ def numara_olustur():
     return ("0352"+str(numara))
 
 def adres_olustur():
-    lst=["MELIKGAZI","KOCASINAN"]
+    adres = []
+    lst=["MELIKGAZI","KOCASINAN","TALAS"]
     mah = random.choice(lst)
     yol=""
     if(mah=="MELIKGAZI"):
         yol = "mahalleler//melikgazi.txt"
     elif(mah=="KOCASINAN"):
         yol = "mahalleler//kocasinan.txt"
-    return satir_getir(yol).replace("\n","")
+    elif(mah=="TALAS"):
+        yol = "mahalleler//talas.txt"
+    adres.insert(0, mah) 
+    adres.insert(1, satir_getir(yol).replace("\n","")) 
+    return adres
 
 def musteri_ad_olustur():
     return satir_getir("musteriler//isimler.txt")

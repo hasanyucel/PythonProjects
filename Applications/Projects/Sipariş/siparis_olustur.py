@@ -1,5 +1,6 @@
 import time
 import sys
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -14,7 +15,9 @@ import musteri_olustur as mo
 # prefs = {"profile.default_content_setting_values.notifications" : 1}
 # chrome_options.add_experimental_option("prefs",prefs)
 # driver = webdriver.Chrome(chrome_options=chrome_options)
-driver = webdriver.Chrome()
+
+
+driver = webdriver.Chrome(executable_path="driver/chromedriver.exe")
 wait = WebDriverWait(driver, 20)
 
 def gspn_giris(website):
@@ -82,11 +85,20 @@ def musteri_ekle():
     m_il.send_keys("KAYSERİ")
     m_il_ara = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[3]/table/tbody/tr[2]/td/table[1]/tbody/tr[1]/td[5]/table/tbody/tr/td[2]/a""")))
     m_il_ara.click()
-    m_ilce = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[3]/table/tbody/tr[2]/td/table[3]/tbody[2]/tr[6]/td[13]"""))) #KOCASİNAN
+
+    adres = mo.adres_olustur()
+    m_ilce = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[3]/table/tbody/tr[2]/td/table[3]/tbody[2]/tr[7]/td[13]""")))
+    if(adres[0]=="MELIKGAZI"):
+        m_ilce = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[3]/table/tbody/tr[2]/td/table[3]/tbody[2]/tr[7]/td[13]""")))
+    elif(adres[0]=="KOCASINAN"):
+        m_ilce = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[3]/table/tbody/tr[2]/td/table[3]/tbody[2]/tr[6]/td[13]"""))) #KOCASİNAN
+    elif(adres[0]=="TALAS"):
+        m_ilce = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[3]/table/tbody/tr[2]/td/table[3]/tbody[2]/tr[11]/td[13]""")))
+
     m_ilce.click()
     driver.switch_to_window(name_surname_window)
     m_adres = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[5]/div/table/tbody/tr[6]/td[2]/input[1]""")))
-    m_adres.send_keys(mo.adres_olustur())
+    m_adres.send_keys(adres[1])
     m_kaydet = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[3]/div[1]/table/tbody/tr/td[2]/table/tbody/tr/td[2]/a""")))
     m_kaydet.click()
     wait.until(EC.alert_is_present())
