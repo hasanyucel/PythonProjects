@@ -14,7 +14,8 @@ cv2.imshow("sharpen_img",sharpen_img)
 gray = cv2.cvtColor(sharpen_img, cv2.COLOR_BGR2GRAY)
 cv2.imshow("gray",gray)
 
-thresh = cv2.threshold(gray, 30, 255, cv2.THRESH_BINARY)[1]
+# thresh = cv2.threshold(gray, 30, 255, cv2.THRESH_BINARY)[1]
+thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,60)
 cv2.imshow("thresh",thresh)
 
 line = cv2.threshold(croppedImg, 20, 255, cv2.THRESH_BINARY_INV)[1]
