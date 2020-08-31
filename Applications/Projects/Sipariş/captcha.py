@@ -1,7 +1,7 @@
 from twocaptcha import TwoCaptcha
 solver = TwoCaptcha('62bb86c9bba1329fb3e04e9d126c3071')
 
-def captch_solve(path):
+def captcha_solve(path):
     result = solver.normal(path)
     return result
 
