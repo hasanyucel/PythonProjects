@@ -44,10 +44,13 @@ def is_emri_olustur():
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="leftMenus"]""")))
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="b2BLeftMenuScroll"]""")))
-    st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[10]/td""")))
+    st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td"""))) #Favoriler
+    # ev = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr/td[1]/table/tbody/tr[1]/td/table/tbody/tr/td[3]/img[1]""")))
+    # ev.click()
+    # st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[10]/td""")))
     st.click()
-    ie = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[11]/td/table/tbody/tr[5]/td""")))
-    ie.click()
+    # ie = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[11]/td/table/tbody/tr[5]/td""")))
+    # ie.click()
 
 def kullanici_adi_sifre_getir():
     dosya = open("D:\\user.txt","r",encoding="utf8")
