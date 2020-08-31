@@ -1,5 +1,7 @@
 import numpy as np
 from cv2 import cv2
+import pytesseract
+from PIL import Image
 
 
 # Load image, grayscale, adaptive threshold
@@ -19,9 +21,17 @@ for c in cnts:
     if area < 10:
         cv2.drawContours(opening, [c], -1, (0,0,0), -1)
 
+# Invert image for result
+result = 255 - opening
+
 cv2.imshow('thresh', thresh)
 cv2.imshow('opening', opening)
+cv2.imshow('result', result)
 
+cv2.imwrite("result2.png",result)
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
+a=pytesseract.image_to_string(Image.open('result2.png'))
+print(a)
 
 # cv2.waitKey()
 # img = cv2.imread('captchas/10.png')

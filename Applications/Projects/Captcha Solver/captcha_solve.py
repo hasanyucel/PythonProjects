@@ -1,5 +1,7 @@
 import numpy as np
 from cv2 import cv2
+import pytesseract
+from PIL import Image
 
 img = cv2.imread('captchas/5.png')
 cv2.imshow("img",img)
@@ -24,6 +26,11 @@ line = cv2.cvtColor(line, cv2.COLOR_BGR2GRAY)
 
 res = thresh+line
 cv2.imshow("res",res)
+
+cv2.imwrite("result.png",res)
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
+a=pytesseract.image_to_string(Image.open('result.png'))
+print(a)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
