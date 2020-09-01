@@ -1,6 +1,8 @@
 Captcha çözümlemesi yapılacak.
 İş emrine favori listesinden değil normal yoldan gitmesi sağlanacak.
 Modelleri yok ise gidip modelleri bulup klasöre ekliyecek.
+Klasör kontrolleri sağlanacak.
+Garanti sorgularken oluşan durum incelenecek.
 Siparişleri oluşturma işlemi tamamlanıca siparişleri isteyecek.
 Aylık Listeye göre sipariş oluşturacak.
 Hergün sabah 7.50de çalışması için bir mekanizma oluşturulacak.
