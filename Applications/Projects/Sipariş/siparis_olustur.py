@@ -197,12 +197,12 @@ def captcha_kontrol():
         driver.switch_to_alert().accept()	
         cap_name = ""+datetime.datetime.now().strftime("%Y%d%m-%H-%M-%S")	
         captcha_kaydet("/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[3]/table/tbody/tr/td[1]/div/img",cap_name)	
-        # a = c.captcha_solve("captchas/"+cap_name+".png")	
-        # print(a)	
-        # cap_in = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input[1]""")))	
-        # cap_in.send_keys(a)	
-        # save = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[5]/tbody/tr[1]/td[3]/table/tbody/tr/td[2]/a""")))	
-        # save.click()	
+        a = c.captcha_solve("captchas/"+cap_name+".png")	
+        print(a)	
+        cap_in = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input[1]""")))	
+        cap_in.send_keys(a)	
+        save = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[5]/tbody/tr[1]/td[3]/table/tbody/tr/td[2]/a""")))	
+        save.click()	
         wait.until(EC.alert_is_present())	
         alert = driver.switch_to_alert().text	
     else:
