@@ -1,4 +1,5 @@
 Captcha çözümlemesi yapılacak.
+Arıza açıklamaları randomlaştırılacak.
 İş emrine favori listesinden değil normal yoldan gitmesi sağlanacak.
 Modelleri yok ise gidip modelleri bulup klasöre ekliyecek.
 Klasör kontrolleri sağlanacak.
