@@ -12,4 +12,3 @@ def get_balance():
 # print(get_balance())
 # a = captcha_solve("30.png")
 # print(a)
-# print(get_balance())
