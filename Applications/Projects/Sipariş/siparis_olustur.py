@@ -22,7 +22,7 @@ import captcha as c
 
 
 driver = webdriver.Chrome(executable_path="driver/chromedriver.exe")	
-wait = WebDriverWait(driver, 20)	
+wait = WebDriverWait(driver, 15)	
 
 def gspn_giris(website):	
     driver.get(website)	
