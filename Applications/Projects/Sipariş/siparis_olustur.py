@@ -1,6 +1,9 @@
 import time
 import sys
 import os
+import requests
+from PIL import Image
+import datetime
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -10,6 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 # from selenium.webdriver import ChromeOptions
 import sip_no_olustur as sno
 import musteri_olustur as mo
+import captcha as c
 
 # chrome_options = webdriver.ChromeOptions()
 # prefs = {"profile.default_content_setting_values.notifications" : 1}
@@ -154,8 +158,10 @@ def urun_bilgilerini_gir(malzeme_kodu):
     teknisyen.click()
     save = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[5]/tbody/tr[1]/td[3]/table/tbody/tr/td[2]/a""")))
     save.click()
-    wait.until(EC.alert_is_present())
-    driver.switch_to_alert().accept()
+    #Alerti oku captcha istiyorsa çöz yoksa devam
+    captcha_kontrol()
+    # wait.until(EC.alert_is_present())
+    # driver.switch_to_alert().accept()
     update = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[5]/tbody/tr[2]/td[5]/table/tbody/tr/td[2]/a""")))
     update.click()
 
@@ -182,6 +188,43 @@ def parca_ekle_ve_iste(malzeme_kodu):
     wait.until(EC.alert_is_present())
     driver.switch_to_alert().accept()
     time.sleep(5)
+
+def captcha_kontrol():
+    wait.until(EC.alert_is_present())
+    alert = driver.switch_to_alert().text
+    print(alert)
+    while("Captcha" in alert):
+        driver.switch_to_alert().accept()
+        cap_name = ""+datetime.datetime.now().strftime("%Y%d%m-%H-%M-%S")
+        captcha_kaydet("/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[3]/table/tbody/tr/td[1]/div/img",cap_name)
+        # a = c.captcha_solve("captchas/"+cap_name+".png")
+        # print(a)
+        # cap_in = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input[1]""")))
+        # cap_in.send_keys(a)
+        # save = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[5]/tbody/tr[1]/td[3]/table/tbody/tr/td[2]/a""")))
+        # save.click()
+        wait.until(EC.alert_is_present())
+        alert = driver.switch_to_alert().text
+
+    driver.switch_to_alert().accept()
+    
+
+def captcha_kaydet(xpath_id,pic_id): #img ile biten full xpathle ve captcha id göndermek yeterli olacaktır. 
+    # os.mkdir("captchas")
+    ele = driver.find_element_by_xpath(xpath_id)
+    loc1 = ele.location
+    driver.save_screenshot("captchas/"+pic_id+".png")
+    image2 = Image.open("captchas/"+pic_id+".png")
+    left = loc1['x']
+    top = loc1['y']
+    right = loc1['x'] + 240
+    bottom1 = loc1['y'] + 46
+    image2 = image2.crop((left,top,right,bottom1))
+    image2.save("captchas/"+pic_id+".png")    
+
+# def test(website,pic_id):
+#     driver.get(website)
+#     captcha_kaydet("/html/body/img",""+datetime.datetime.now().strftime("%Y%d%m-%H-%M-%S"))
 
 def tarayici_kapat():
     driver.close()

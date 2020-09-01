@@ -1,3 +1,4 @@
 import musteri_olustur as mo
+import siparis_olustur as so
 
-print(mo.adres_olustur())
+so.test("https://biz1.samsungcsportal.com/simpleCaptcha.cha","qwe")
