@@ -10,16 +10,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert	
 from selenium.webdriver.support.ui import WebDriverWait	
 from selenium.webdriver.support import expected_conditions as EC	
-# from selenium.webdriver import ChromeOptions	
 import sip_no_olustur as sno	
 import musteri_olustur as mo	
-import captcha as c	
-
-# chrome_options = webdriver.ChromeOptions()	
-# prefs = {"profile.default_content_setting_values.notifications" : 1}	
-# chrome_options.add_experimental_option("prefs",prefs)	
-# driver = webdriver.Chrome(chrome_options=chrome_options)	
-
+import captcha as c
 
 driver = webdriver.Chrome(executable_path="driver/chromedriver.exe")	
 wait = WebDriverWait(driver, 15)	
@@ -48,9 +41,7 @@ def is_emri_olustur():
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="leftMenus"]""")))	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="b2BLeftMenuScroll"]""")))	
-    st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td"""))) #Favoriler	
-    # ev = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr/td[1]/table/tbody/tr[1]/td/table/tbody/tr/td[3]/img[1]""")))	
-    # ev.click()	
+    st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td"""))) #Favoriler		
     # st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[10]/td""")))	
     st.click()	
     # ie = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[11]/td/table/tbody/tr[5]/td""")))	
@@ -160,8 +151,6 @@ def urun_bilgilerini_gir(malzeme_kodu):
     save.click()	
     #Alerti oku captcha istiyorsa çöz yoksa devam	
     captcha_kontrol()	
-    # wait.until(EC.alert_is_present())	
-    # driver.switch_to_alert().accept()	
     update = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[5]/tbody/tr[2]/td[5]/table/tbody/tr/td[2]/a""")))	
     update.click()	
 
@@ -197,10 +186,10 @@ def captcha_kontrol():
         driver.switch_to_alert().accept()	
         cap_name = ""+datetime.datetime.now().strftime("%Y%d%m-%H-%M-%S")	
         captcha_kaydet("/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[3]/table/tbody/tr/td[1]/div/img",cap_name)	
-        a = c.captcha_solve("captchas/"+cap_name+".png")	
-        print(a)	
+        cozulmus_captcha = c.captcha_solve("captchas/"+cap_name+".png")	
+        print(cozulmus_captcha)	
         cap_in = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input[1]""")))	
-        cap_in.send_keys(a)	
+        cap_in.send_keys(cozulmus_captcha)	
         save = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[5]/tbody/tr[1]/td[3]/table/tbody/tr/td[2]/a""")))	
         save.click()	
         wait.until(EC.alert_is_present())	
@@ -223,10 +212,6 @@ def captcha_kaydet(xpath_id,pic_id): #img ile biten full xpathle ve captcha id g
     image = image.crop((240,90,480,137))	
     image.save("captchas/"+pic_id+".png")  
     # image2.save("captchas/test.png")  	
-
-# def test(website,pic_id):	
-#     driver.get(website)	
-#     captcha_kaydet("/html/body/img",""+datetime.datetime.now().strftime("%Y%d%m-%H-%M-%S"))	
 
 def tarayici_kapat():	
     driver.close()	
