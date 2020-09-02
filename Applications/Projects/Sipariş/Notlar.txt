@@ -1,6 +1,6 @@
 Arıza açıklamaları randomlaştırılacak.
 İş emrine favori listesinden değil normal yoldan gitmesi sağlanacak.
-Klasör kontrolleri sağlanacak.
 Garanti sorgularken oluşan durum incelenecek.
 Aylık Listeye göre sipariş oluşturacak.
 Hergün sabah 7.50de çalışması için bir mekanizma oluşturulacak.
+Günlük istenen malzemeleri logla
