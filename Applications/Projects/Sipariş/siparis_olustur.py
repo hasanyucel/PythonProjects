@@ -188,7 +188,7 @@ def captcha_kontrol():
     print(alert)	
     while("Captcha" in alert):	
         driver.switch_to_alert().accept()	
-        cap_name = ""+datetime.datetime.now().strftime("%Y%d%m-%H-%M-%S")	
+        cap_name = ""+datetime.datetime.now().strftime("%Y%m%d-%H-%M-%S")	
         captcha_kaydet("/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[3]/table/tbody/tr/td[1]/div/img",cap_name)	
         cozulmus_captcha = c.captcha_solve("captchas/"+cap_name+".png")	
         print(cozulmus_captcha)	
