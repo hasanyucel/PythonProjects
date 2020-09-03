@@ -143,6 +143,7 @@ def urun_bilgilerini_gir(malzeme_kodu):
     talep = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[12]/tbody/tr[3]/td[2]/input""")))	
     # talep.send_keys("Arızalı. Çalışmıyor.")	
     ariza = mo.satir_getir("ariza/"+sno.kontrol_tur(malzeme_kodu))
+    talep.send_keys(ariza)	
     s1 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[11]/td/div/table/tbody/tr[1]/td[2]/table/tbody/tr/td[2]/div/img""")))	
     s1.click()	
     s2 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[11]/td/div/table/tbody/tr[2]/td[2]/table/tbody/tr/td[2]/div/img""")))	
