@@ -36,3 +36,13 @@ def siparis_no_olustur():
     db.commit()
     db.close()
     return sonuc
+
+def kontrol_tur(model):
+    db_olustur()
+    db = sqlite3.connect(db_name)
+    imlec = db.cursor()
+    imlec.execute("SELECT tur FROM model_tur WHERE model=?", (model,))
+    tur = imlec.fetchall()
+    db.commit()
+    db.close()
+    return tur[0][0]+".txt"
