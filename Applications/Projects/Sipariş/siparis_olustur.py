@@ -16,6 +16,7 @@ import captcha as c
 
 driver = webdriver.Chrome(executable_path="driver/chromedriver.exe")	
 wait = WebDriverWait(driver, 15)	
+ilk = 0
 
 def gspn_giris(website):	
     driver.get(website)	
@@ -37,15 +38,18 @@ def yonetime_git():
     yonetim.click()	
 
 def is_emri_olustur():	
+    global ilk
     driver.switch_to_default_content()	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="leftMenus"]""")))	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="b2BLeftMenuScroll"]""")))	
-    st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td"""))) #Favoriler		
-    # st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[10]/td""")))	
-    st.click()	
-    # ie = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[11]/td/table/tbody/tr[5]/td""")))	
-    # ie.click()	
+    # st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td"""))) #Favoriler	
+    if(ilk==0):
+        st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[10]/td""")))	
+        st.click()	
+        ilk = 1
+    ie = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[11]/td/table/tbody/tr[5]/td""")))	
+    ie.click()	
 
 def kullanici_adi_sifre_getir():	
     dosya = open("D:\\user.txt","r",encoding="utf8")	
