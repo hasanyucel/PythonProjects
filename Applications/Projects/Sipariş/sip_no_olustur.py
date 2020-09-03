@@ -7,6 +7,7 @@ def db_olustur():
     db = sqlite3.connect(db_name)
     imlec = db.cursor()
     imlec.execute("CREATE TABLE IF NOT EXISTS counter(tarih text, sip_sayisi int)") 
+    imlec.execute("CREATE TABLE IF NOT EXISTS model_tur(model TEXT,tur TEXT,PRIMARY KEY(model))")
     db.commit()
     db.close()
 
