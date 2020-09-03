@@ -126,8 +126,7 @@ def urun_bilgilerini_gir(malzeme_kodu):
         g_sorgula.click()	
         wait.until(EC.alert_is_present())	
         driver.switch_to_alert().accept()	
-        # time.sleep(5)	
-        wait.until(EC.alert_is_present())	
+        time.sleep(1)	
         driver.switch_to_alert().accept()	
     except:	
         pass	
