@@ -1,6 +1,3 @@
-# import sip_no_olustur as sno
-# import musteri_olustur as mo
+# import captcha as c 
 
-# ariza = mo.satir_getir("ariza/"+sno.kontrol_tur("BN59-01220D"))
-
-# print(ariza)
+# print(c.get_balance())
