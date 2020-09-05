@@ -13,6 +13,6 @@ def start():
             sa.musteri_ekle()
             sa.urun_bilgilerini_gir(satir.strip())
             sa.parca_ekle_ve_iste(satir.strip())
-    sa.tarayici_kapat()
+    # sa.tarayici_kapat()
 
 start()
