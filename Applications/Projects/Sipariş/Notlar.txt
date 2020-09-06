@@ -1,3 +1,5 @@
 Aylık Listeye göre sipariş oluşturacak.
 Hergün sabah 7.50de çalışması için bir mekanizma oluşturulacak.
 Günlük istenen malzemeleri logla
+Captcha try catch kontrolü
+Sokak bina adı eklemeleri
