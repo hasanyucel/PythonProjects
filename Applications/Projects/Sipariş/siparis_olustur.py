@@ -54,7 +54,7 @@ def is_emri_olustur():
 def kullanici_adi_sifre_getir():	
     dosya = open("D:\\user.txt","r",encoding="utf8")	
     satir = dosya.readline() 	
-    # print(line)	
+    print(satir)	
     return satir.split(",")	
 
 def sip_no_doldur():	
