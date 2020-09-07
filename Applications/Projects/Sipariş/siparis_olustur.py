@@ -52,7 +52,7 @@ def is_emri_olustur():
     ie.click()	
 
 def kullanici_adi_sifre_getir():	
-    dosya = open("D:\\user.txt","r",encoding="utf8")	
+    dosya = open("D:\\user2.txt","r",encoding="utf8")	
     satir = dosya.readline() 	
     print(satir)	
     return satir.split(",")	
