@@ -1,3 +1,3 @@
-# import captcha as c 
+import musteri_olustur as mo
 
-# print(c.get_balance())
+print(mo.adres_olustur())

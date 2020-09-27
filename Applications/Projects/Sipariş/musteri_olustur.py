@@ -16,15 +16,21 @@ def adres_olustur():
     adres = []
     lst=["MELIKGAZI","KOCASINAN","TALAS"]
     mah = random.choice(lst)
-    yol=""
+    mahalle = ""
+    sokak = ""
+    bina = "cad-sok-bina//bina.txt"
     if(mah=="MELIKGAZI"):
-        yol = "mahalleler//melikgazi.txt"
+        mahalle = "mahalleler//melikgazi.txt"
+        sokak = "cad-sok-bina//melikgazi.txt"
     elif(mah=="KOCASINAN"):
-        yol = "mahalleler//kocasinan.txt"
+        mahalle = "mahalleler//kocasinan.txt"
+        sokak = "cad-sok-bina//kocasinan.txt"
     elif(mah=="TALAS"):
-        yol = "mahalleler//talas.txt"
+        mahalle = "mahalleler//talas.txt"
+        sokak = "cad-sok-bina//talas.txt"
+    mcsb = (satir_getir(mahalle).replace("\n","")) + " " + (satir_getir(sokak).replace("\n","")) + " " + (satir_getir(bina).replace("\n",""))
     adres.insert(0, mah) 
-    adres.insert(1, satir_getir(yol).replace("\n","")) 
+    adres.insert(1, mcsb) 
     return adres
 
 def musteri_ad_olustur():
