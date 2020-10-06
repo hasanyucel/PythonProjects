@@ -1,4 +1,5 @@
 Aylık Listeye göre sipariş oluşturacak.
 Günlük istenen malzemeleri logla
 Captcha try catch kontrolü
+Hatalı captcha olunca textboxa boşaltarak yazılacak
 Müşteri Şikayetleri kısmını istenilen ürüne göre seç
