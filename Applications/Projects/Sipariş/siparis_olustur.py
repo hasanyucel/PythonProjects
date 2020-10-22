@@ -173,8 +173,14 @@ def parca_ekle_ve_iste(malzeme_kodu):
     pekle.click()	
     parca_ekle_window = driver.window_handles[1]	
     driver.switch_to_window(parca_ekle_window)
-    wait.until(EC.alert_is_present())	
-    driver.switch_to_alert().accept()	
+    try:
+        wait.until(EC.alert_is_present())	
+        driver.switch_to_alert().accept()	
+        
+        wait.until(EC.alert_is_present())	
+        driver.switch_to_alert().accept()
+    except:	
+        pass	
     parca_ekle = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/table[1]/tbody/tr[1]/td/form/div[7]/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/a""")))	
     parca_ekle.click()	
     parca = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[1]/td/form/div[7]/table[3]/tbody/tr/td[2]/input[1]""")))	
