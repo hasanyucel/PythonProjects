@@ -170,7 +170,8 @@ def parca_ekle_ve_iste(malzeme_kodu):
     pbekliyor = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/div[13]/table[3]/tbody/tr[2]/td[2]/table/tbody/tr/td[2]/select/option[10]""")))	
     pbekliyor.click()	
     pekle = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table[10]/tbody/tr/td[5]/table/tbody/tr/td[6]/table/tbody/tr/td[1]/a""")))	
-    pekle.click()	
+    pekle.click()
+    time.sleep(5)	
     parca_ekle_window = driver.window_handles[1]	
     driver.switch_to_window(parca_ekle_window)
     try:
