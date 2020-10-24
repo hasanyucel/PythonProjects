@@ -25,6 +25,8 @@ def gspn_giris(website):
     username = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/dl/dd[1]/input""")))	
     password = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/dl/dd[2]/input""")))	
     usercr = kullanici_adi_sifre_getir()
+    username.send_keys(Keys.CONTROL, "a")
+    username.send_keys(Keys.BACKSPACE)
     username.send_keys(usercr[0])
     password.send_keys(usercr[1])
     print(usercr[0])
@@ -134,12 +136,24 @@ def urun_bilgilerini_gir(malzeme_kodu):
         pass	
     s_tipi = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[8]/tbody/tr[1]/td[2]/select/option[2]""")))	
     s_tipi.click()	
-    m_sikayet1 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[11]/tbody/tr/td[2]/table/tbody/tr/td[1]/select/option[13]""")))	
-    m_sikayet1.click()	
-    m_sikayet2 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[11]/tbody/tr/td[2]/table/tbody/tr/td[2]/select/option[5]""")))	
-    m_sikayet2.click()	
-    m_sikayet3 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[11]/tbody/tr/td[2]/table/tbody/tr/td[3]/select/option[2]""")))	
-    m_sikayet3.click()	
+    try:
+        m_sikayet1 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[11]/tbody/tr/td[2]/table/tbody/tr/td[1]/select/option[13]""")))	
+        m_sikayet1.click()
+    except:	
+        m_sikayet1 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[11]/tbody/tr/td[2]/table/tbody/tr/td[1]/select/option[2]""")))
+        m_sikayet1.click()
+    try:
+        m_sikayet2 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[11]/tbody/tr/td[2]/table/tbody/tr/td[2]/select/option[5]""")))	
+        m_sikayet2.click()
+    except:	
+        m_sikayet2 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[11]/tbody/tr/td[2]/table/tbody/tr/td[2]/select/option[2]""")))
+        m_sikayet2.click()
+    try:
+        m_sikayet3 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[11]/tbody/tr/td[2]/table/tbody/tr/td[3]/select/option[2]""")))	
+        m_sikayet3.click()
+    except:
+        m_sikayet3 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[11]/tbody/tr/td[2]/table/tbody/tr/td[3]/select/option[2]""")))	
+        m_sikayet3.click()
     aciklama = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[12]/tbody/tr[2]/td[2]/input""")))	
     aciklama.send_keys("Emrah Beye Teslim Edilecek. HY")	
     talep = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[12]/tbody/tr[3]/td[2]/input""")))	
@@ -171,15 +185,13 @@ def parca_ekle_ve_iste(malzeme_kodu):
     pbekliyor.click()	
     pekle = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table[10]/tbody/tr/td[5]/table/tbody/tr/td[6]/table/tbody/tr/td[1]/a""")))	
     pekle.click()
-    time.sleep(5)	
     parca_ekle_window = driver.window_handles[1]	
     driver.switch_to_window(parca_ekle_window)
     try:
         wait.until(EC.alert_is_present())	
         driver.switch_to_alert().accept()	
         
-        wait.until(EC.alert_is_present())	
-        driver.switch_to_alert().accept()
+
     except:	
         pass	
     parca_ekle = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/table[1]/tbody/tr[1]/td/form/div[7]/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/a""")))	
@@ -212,9 +224,15 @@ def captcha_kontrol():
         driver.switch_to_alert().accept()	
         cap_name = ""+datetime.datetime.now().strftime("%Y%m%d-%H-%M-%S")	
         captcha_kaydet("/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[3]/table/tbody/tr/td[1]/div/img",cap_name)	
-        cozulmus_captcha = c.captcha_solve("captchas/"+cap_name+".png")	
+        try:
+            cozulmus_captcha = c.captcha_solve("captchas/"+cap_name+".png")	
+        except:	
+            print("Captcha tarafında hata döndü!")
+            pass
         print(cozulmus_captcha)	
         cap_in = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input[1]""")))	
+        cap_in.send_keys(Keys.CONTROL, "a")
+        cap_in.send_keys(Keys.BACKSPACE)
         cap_in.send_keys(cozulmus_captcha)	
         save = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[5]/tbody/tr[1]/td[3]/table/tbody/tr/td[2]/a""")))	
         save.click()	
