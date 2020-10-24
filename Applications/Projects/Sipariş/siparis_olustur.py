@@ -17,8 +17,10 @@ import captcha as c
 driver = webdriver.Chrome(executable_path="driver/chromedriver.exe")	
 wait = WebDriverWait(driver, 15)	
 ilk = 0
+log = ""
 
-def gspn_giris(website):	
+def gspn_giris(website):
+    global log 	
     driver.get(website)	
     wait.until(EC.alert_is_present())	
     driver.switch_to_alert().accept()	
@@ -29,6 +31,7 @@ def gspn_giris(website):
     username.send_keys(Keys.BACKSPACE)
     username.send_keys(usercr[0])
     password.send_keys(usercr[1])
+    log = log + " " + usercr[0]
     print(usercr[0])
     print(usercr[1])
     login_form = wait.until(EC.presence_of_element_located((By.XPATH, """//*[@id="login_form_all"]/div[1]/img""")))	
@@ -61,15 +64,18 @@ def kullanici_adi_sifre_getir():
     print(satir)	
     return satir.split(",")	
 
-def sip_no_doldur():	
+def sip_no_doldur():
+    global log 	
     sip_no = sno.siparis_no_olustur()	
     driver.switch_to_default_content()	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/body/table/tbody/tr/td/table/tbody/tr/td[2]/iframe""")))	
     sip_no_textbox = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[4]/td/div/table[1]/tbody/tr[1]/td[4]/input""")))	
-    sip_no_textbox.send_keys(sip_no)	
+    sip_no_textbox.send_keys(sip_no)
+    log = log + " " + sip_no	
 
 def musteri_ekle():	
+    global log 
     driver.switch_to_default_content()	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/body/table/tbody/tr/td/table/tbody/tr/td[2]/iframe""")))	
@@ -79,12 +85,18 @@ def musteri_ekle():
     driver.switch_to_window(name_surname_window)	
     yeni = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[3]/table[1]/tbody/tr/td[2]/table/tbody/tr/td[2]/a""")))	
     yeni.click()	
-    m_adi = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[5]/div/table/tbody/tr[1]/td[2]/input[1]""")))	
-    m_adi.send_keys(mo.musteri_ad_olustur())	
-    m_soyadi = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[5]/div/table/tbody/tr[1]/td[2]/input[2]""")))	
-    m_soyadi.send_keys(mo.musteri_soyad_olustur())	
-    m_tel = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[5]/div/table/tbody/tr[3]/td[2]/input[1]""")))	
-    m_tel.send_keys(mo.numara_olustur())	
+    m_adi = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[5]/div/table/tbody/tr[1]/td[2]/input[1]""")))
+    musteri_adi = mo.musteri_ad_olustur()	
+    m_adi.send_keys(musteri_adi)
+    log = log + " " + musteri_adi	
+    m_soyadi = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[5]/div/table/tbody/tr[1]/td[2]/input[2]""")))
+    musteri_soyadi = mo.musteri_soyad_olustur()
+    m_soyadi.send_keys(musteri_soyadi)	
+    log = log + " " + musteri_soyadi
+    m_tel = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[5]/div/table/tbody/tr[3]/td[2]/input[1]""")))
+    musteri_telefon = mo.numara_olustur()
+    m_tel.send_keys(musteri_telefon)
+    log = log + " " + musteri_telefon
     m_il_ilce = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[5]/div/table/tbody/tr[8]/td[2]/a/img[1]""")))	
     m_il_ilce.click()	
     address_window = driver.window_handles[2]	
@@ -94,7 +106,7 @@ def musteri_ekle():
     m_il_ara = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[3]/table/tbody/tr[2]/td/table[1]/tbody/tr[1]/td[5]/table/tbody/tr/td[2]/a""")))	
     m_il_ara.click()	
 
-    adres = mo.adres_olustur()	
+    adres = mo.adres_olustur()
     m_ilce = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[3]/table/tbody/tr[2]/td/table[3]/tbody[2]/tr[7]/td[13]""")))	
     if(adres[0]=="MELIKGAZI"):	
         m_ilce = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[3]/table/tbody/tr[2]/td/table[3]/tbody[2]/tr[7]/td[13]""")))	
@@ -114,13 +126,16 @@ def musteri_ekle():
     m_ekle = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/table[1]/tbody/tr[2]/td/form[3]/div[3]/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/a""")))	
     m_ekle.click()	
 
-def urun_bilgilerini_gir(malzeme_kodu):	
+def urun_bilgilerini_gir(malzeme_kodu):
+    global log	
     driver.switch_to_window(driver.window_handles[0])	
     driver.switch_to_default_content()	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))	
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/body/table/tbody/tr/td/table/tbody/tr/td[2]/iframe""")))	
     model = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[1]/tbody/tr/td[2]/table/tbody/tr/td[1]/input""")))	
-    model.send_keys(mo.model_bul(malzeme_kodu))	
+    model_kodu = mo.model_bul(malzeme_kodu)
+    log = log + " " + model_kodu + " " + malzeme_kodu
+    model.send_keys(model_kodu)	
     model.send_keys(Keys.ENTER)	
     seri_no = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[2]/tbody/tr/td[2]/table/tbody/tr[1]/td[1]/input""")))	
     seri_no.send_keys("M000")	
@@ -213,10 +228,12 @@ def parca_ekle_ve_iste(malzeme_kodu):
     yeniistek = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/div[14]/table/tbody/tr/td/table/tbody/tr/td[8]/input""")))	
     yeniistek.click()	
     wait.until(EC.alert_is_present())	
-    driver.switch_to_alert().accept()	
+    driver.switch_to_alert().accept()
+    log_yaz(log)	
     time.sleep(5)	
 
 def captcha_kontrol():	
+    global log
     wait.until(EC.alert_is_present())	
     alert = driver.switch_to_alert().text	
     print(alert)	
@@ -225,8 +242,10 @@ def captcha_kontrol():
         cap_name = ""+datetime.datetime.now().strftime("%Y%m%d-%H-%M-%S")	
         captcha_kaydet("/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[3]/table/tbody/tr/td[1]/div/img",cap_name)	
         try:
-            cozulmus_captcha = c.captcha_solve("captchas/"+cap_name+".png")	
+            cozulmus_captcha = c.captcha_solve("captchas/"+cap_name+".png")
+            log = log + " " + cap_name + " " + cozulmus_captcha
         except:	
+            log = log + " " + cap_name + " Captcha tarafında hata döndü!"
             print("Captcha tarafında hata döndü!")
             pass
         print(cozulmus_captcha)	
@@ -256,6 +275,14 @@ def captcha_kaydet(xpath_id,pic_id): #img ile biten full xpathle ve captcha id g
     image = image.crop((240,90,480,137))	
     image.save("captchas/"+pic_id+".png")  
     # image2.save("captchas/test.png")  	
+
+def log_yaz(log):
+    with open("log.txt", "a+") as file_object:
+        file_object.seek(0)
+        data = file_object.read(100)
+        if len(data) > 0 :
+            file_object.write("\n")
+        file_object.write(log)
 
 def tarayici_kapat():	
     driver.close()	
