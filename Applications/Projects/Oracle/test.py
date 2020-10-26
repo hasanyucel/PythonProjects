@@ -1,6 +1,6 @@
 import cx_Oracle
 
-dsn_tns = cx_Oracle.makedsn('192.168.x.x', 'y', service_name='Test')
+dsn_tns = cx_Oracle.makedsn('x', 'y', service_name='z')
 conn = cx_Oracle.connect(user='x', password='y', dsn=dsn_tns)
 
 mail = input('Mail Adresi: ')
