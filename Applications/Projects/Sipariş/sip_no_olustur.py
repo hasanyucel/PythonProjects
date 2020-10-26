@@ -1,10 +1,11 @@
 import sqlite3
 import datetime
-
+import pathlib
+root = str(pathlib.Path(__file__).parent.absolute())
 db_name = "gunluk_sip_adedi.db"
 
 def db_olustur():
-    db = sqlite3.connect(db_name)
+    db = sqlite3.connect(root+"/"+db_name)
     imlec = db.cursor()
     imlec.execute("CREATE TABLE IF NOT EXISTS counter(tarih text, sip_sayisi int)") 
     imlec.execute("CREATE TABLE IF NOT EXISTS model_tur(model TEXT,tur TEXT,PRIMARY KEY(model))")
@@ -17,7 +18,7 @@ def siparis_no_olustur():
     sonuc = ""
     x = datetime.datetime.now()
     trh = (x.strftime("%d-%m-%Y")).replace("-","")
-    db = sqlite3.connect(db_name)
+    db = sqlite3.connect(root+"/"+db_name)
     imlec = db.cursor()
     # tarih databasede varmı kontrol et
     imlec.execute("SELECT * FROM counter WHERE tarih=?", (trh,))
@@ -39,7 +40,7 @@ def siparis_no_olustur():
 
 def kontrol_tur(model):
     db_olustur()
-    db = sqlite3.connect(db_name)
+    db = sqlite3.connect(root+"/"+db_name)
     imlec = db.cursor()
     imlec.execute("SELECT tur FROM model_tur WHERE model=?", (model,))
     tur = imlec.fetchall()

@@ -1,4 +1,6 @@
 from os import path
+import pathlib
+root = str(pathlib.Path(__file__).parent.absolute())
 
 dosyalar = ("captcha.py","musteri_olustur.py","sip_no_olustur.py",
 "siparisler.txt","musteriler/isimler.txt","musteriler/soyisimler.txt","mahalleler/kocasinan.txt",
@@ -7,8 +9,8 @@ dosyalar = ("captcha.py","musteri_olustur.py","sip_no_olustur.py",
 klasorler = ("ariza","captchas","driver","mahalleler","modeller","musteriler")
 
 def kontrol_dosya_klasor(yol):
-    if(path.exists(yol)==False):
-        print(yol+" dosyası/klasörü bulunamadı!")
+    if(path.exists(root+"/"+yol)==False):
+        print(root+"/"+yol+" dosyası/klasörü bulunamadı!")
 
 
 def kontrol():
