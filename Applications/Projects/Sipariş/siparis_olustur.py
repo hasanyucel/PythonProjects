@@ -276,13 +276,15 @@ def captcha_kaydet(xpath_id,pic_id): #img ile biten full xpathle ve captcha id g
     image.save("captchas/"+pic_id+".png")  
     # image2.save("captchas/test.png")  	
 
-def log_yaz(log):
+def log_yaz(log2):
     with open("log.txt", "a+") as file_object:
         file_object.seek(0)
         data = file_object.read(100)
         if len(data) > 0 :
             file_object.write("\n")
-        file_object.write(log)
+        file_object.write(log2)
+    global log
+    log = ""
 
 def tarayici_kapat():	
     driver.close()	
