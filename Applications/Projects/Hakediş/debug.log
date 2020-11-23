@@ -10,3 +10,4 @@
 [0713/100646.663:ERROR:exception_snapshot_win.cc(98)] thread ID 21396 not found in process
 [0713/100648.815:ERROR:process_reader_win.cc(123)] NtOpenThread: {Eriþim Yok} Bir iþlem bir nesneye eriþmek istedi, ancak istediði eriþimin haklarý kendisine verilmiþ deðil. (0xc0000022)
 [0713/100648.815:ERROR:exception_snapshot_win.cc(98)] thread ID 25052 not found in process
+[1030/230529.319:ERROR:directory_reader_win.cc(43)] FindFirstFile: Sistem belirtilen yolu bulamýyor. (0x3)

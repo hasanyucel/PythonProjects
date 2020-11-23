@@ -13,8 +13,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import sip_no_olustur as sno	
 import musteri_olustur as mo	
 import captcha as c
+import pathlib
+root = str(pathlib.Path(__file__).parent.absolute())
 
-driver = webdriver.Chrome(executable_path="driver/chromedriver.exe")	
+driver = webdriver.Chrome(executable_path= root+"/driver/chromedriver.exe")	
 wait = WebDriverWait(driver, 15)	
 ilk = 0
 log = ""
@@ -173,7 +175,7 @@ def urun_bilgilerini_gir(malzeme_kodu):
     aciklama.send_keys("Emrah Beye Teslim Edilecek. HY")	
     talep = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[9]/td/div/table[1]/tbody/tr/td/table[12]/tbody/tr[3]/td[2]/input""")))	
     # talep.send_keys("Arızalı. Çalışmıyor.")	
-    ariza = mo.satir_getir("ariza/"+sno.kontrol_tur(malzeme_kodu))
+    ariza = mo.satir_getir(root+"/"+"ariza/"+sno.kontrol_tur(malzeme_kodu))
     talep.send_keys(ariza)	
     s1 = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table/tbody/tr[1]/td[1]/table[4]/tbody/tr[11]/td/div/table/tbody/tr[1]/td[2]/table/tbody/tr/td[2]/div/img""")))	
     s1.click()	
@@ -200,15 +202,22 @@ def parca_ekle_ve_iste(malzeme_kodu):
     pbekliyor.click()	
     pekle = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/form[5]/table[10]/tbody/tr/td[5]/table/tbody/tr/td[6]/table/tbody/tr/td[1]/a""")))	
     pekle.click()
-    parca_ekle_window = driver.window_handles[1]	
+    parca_ekle_window = driver.window_handles[1]
     driver.switch_to_window(parca_ekle_window)
-    try:
-        wait.until(EC.alert_is_present())	
-        driver.switch_to_alert().accept()	
+
+
+    #time.sleep(2)
+    #driver.find_element_by_name("").send_keys(Keys.ENTER)
+
+    #wait.until(EC.alert_is_present())	
+    #driver.switch_to_alert().accept()
+    print(driver.page_source)
+    #try:
+        	
         
 
-    except:	
-        pass	
+    #except:	
+        #pass	
     parca_ekle = wait.until(EC.element_to_be_clickable((By.XPATH, """/html/body/table[1]/tbody/tr[1]/td/form/div[7]/table[2]/tbody/tr/td[2]/table/tbody/tr/td[2]/a""")))	
     parca_ekle.click()	
     parca = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table[1]/tbody/tr[1]/td/form/div[7]/table[3]/tbody/tr/td[2]/input[1]""")))	
@@ -242,7 +251,7 @@ def captcha_kontrol():
         cap_name = ""+datetime.datetime.now().strftime("%Y%m%d-%H-%M-%S")	
         captcha_kaydet("/html/body/form[5]/table/tbody/tr[1]/td[1]/table[2]/tbody/tr[2]/td/table/tbody/tr/td[3]/table/tbody/tr/td[1]/div/img",cap_name)	
         try:
-            cozulmus_captcha = c.captcha_solve("captchas/"+cap_name+".png")
+            cozulmus_captcha = c.captcha_solve(root+"/"+"captchas/"+cap_name+".png")
             log = log + " " + cap_name + " " + cozulmus_captcha
         except:	
             log = log + " " + cap_name + " Captcha tarafında hata döndü!"
@@ -260,24 +269,23 @@ def captcha_kontrol():
     else:
         driver.switch_to_alert().accept()	
 
-
 def captcha_kaydet(xpath_id,pic_id): #img ile biten full xpathle ve captcha id göndermek yeterli olacaktır. 	
     # os.mkdir("captchas")	
     ele = driver.find_element_by_xpath(xpath_id)	
     loc1 = ele.location	
-    driver.save_screenshot("captchas/"+pic_id+".png")	
-    image = Image.open("captchas/"+pic_id+".png")	
+    driver.save_screenshot(root+"/"+"captchas/"+pic_id+".png")	
+    image = Image.open(root+"/"+"captchas/"+pic_id+".png")	
     left = loc1['x']	
     top = loc1['y']	
     right = loc1['x'] + 480	
     bottom1 = loc1['y'] + 137	
     image = image.crop((left,top,right,bottom1))	
     image = image.crop((240,90,480,137))	
-    image.save("captchas/"+pic_id+".png")  
+    image.save(root+"/"+"captchas/"+pic_id+".png")  
     # image2.save("captchas/test.png")  	
 
 def log_yaz(log2):
-    with open("log.txt", "a+") as file_object:
+    with open(root+"/"+"log.txt", "a+") as file_object:
         file_object.seek(0)
         data = file_object.read(100)
         if len(data) > 0 :

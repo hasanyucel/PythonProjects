@@ -11,6 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 driver = webdriver.Chrome()
 wait = WebDriverWait(driver, 15)
 temp = ""
+ilk = 0
 
 def login_gspn(website):
     driver.get(website)
@@ -30,12 +31,18 @@ def go_management():
     management.click()
 
 def go_work_order():
-    driver.switch_to_default_content()
-    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))
-    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="leftMenus"]""")))
-    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="b2BLeftMenuScroll"]""")))
-    st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[2]/td/table/tbody/tr[4]/td""")))
-    st.click()
+    global ilk
+    driver.switch_to_default_content()	
+    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""/html/frameset/frame[3]""")))	
+    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="leftMenus"]""")))	
+    wait.until(EC.frame_to_be_available_and_switch_to_it((By.XPATH,"""//*[@id="b2BLeftMenuScroll"]""")))	
+    # st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[2]/td/table/tbody/tr[1]/td"""))) #Favoriler	
+    if(ilk==0):
+        st = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[10]/td""")))
+        st.click()	
+        ilk = 1
+    ie = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/table/tbody/tr[11]/td/table/tbody/tr[6]/td""")))
+    ie.click()
 
 def get_name_surname(is_emri):
     driver.switch_to_default_content()
@@ -63,10 +70,10 @@ def read_data_from_txt(path):
         time.sleep(5)
 
 def get_username_password():
-    dosya = open("D:\\user.txt","r")
-    line = dosya.readline() 
-    print(line)
-    return line.split(",")
+    dosya = open("D:\\user2.txt","r",encoding="utf8")	
+    satir = dosya.readline() 	
+    print(satir)	
+    return satir.split(",")	
 
 def export_results(res_is_emri,res_name_surname):
     wb = load_workbook("output.xlsx")

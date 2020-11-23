@@ -1,4 +1,7 @@
 import random
+import pathlib
+
+root = str(pathlib.Path(__file__).parent.absolute())
 
 def satir_getir(yol):
     dosya = open(yol,"r",encoding="utf8",errors='ignore')
@@ -18,27 +21,27 @@ def adres_olustur():
     mah = random.choice(lst)
     mahalle = ""
     sokak = ""
-    bina = "cad-sok-bina//bina.txt"
+    bina = root+"/"+"cad-sok-bina//bina.txt"
     if(mah=="MELIKGAZI"):
-        mahalle = "mahalleler//melikgazi.txt"
-        sokak = "cad-sok-bina//melikgazi.txt"
+        mahalle = root+"/"+"mahalleler//melikgazi.txt"
+        sokak = root+"/"+"cad-sok-bina//melikgazi.txt"
     elif(mah=="KOCASINAN"):
-        mahalle = "mahalleler//kocasinan.txt"
-        sokak = "cad-sok-bina//kocasinan.txt"
+        mahalle = root+"/"+"mahalleler//kocasinan.txt"
+        sokak = root+"/"+"cad-sok-bina//kocasinan.txt"
     elif(mah=="TALAS"):
-        mahalle = "mahalleler//talas.txt"
-        sokak = "cad-sok-bina//talas.txt"
+        mahalle = root+"/"+"mahalleler//talas.txt"
+        sokak = root+"/"+"cad-sok-bina//talas.txt"
     mcsb = (satir_getir(mahalle).replace("\n","")) + " " + (satir_getir(sokak).replace("\n","")) + " " + (satir_getir(bina).replace("\n",""))
     adres.insert(0, mah) 
     adres.insert(1, mcsb) 
     return adres
 
 def musteri_ad_olustur():
-    return satir_getir("musteriler//isimler.txt")
+    return satir_getir(root+"/"+"musteriler//isimler.txt")
 
 def musteri_soyad_olustur():
-    return satir_getir("musteriler//soyisimler.txt")
+    return satir_getir(root+"/"+"musteriler//soyisimler.txt")
 
 def model_bul(kod):
-    yol = "modeller//"+kod+".txt"
+    yol = root+"/"+"modeller//"+kod+".txt"
     return satir_getir(yol).replace("\t","")
