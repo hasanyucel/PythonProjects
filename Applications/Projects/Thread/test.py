@@ -17,7 +17,7 @@ def calistir3(threadName):
         print(threadName ," --- ",i)
 
 
-t1 = threading.Thread(target=calistir, args = ("thread-1", ), daemon=True) # daemon ile 2 ve 3 thread bittiyse 1i bekleme main threadi sonlardır
+t1 = threading.Thread(target=calistir, args = ("thread-1", )) # daemon ile 2 ve 3 thread bittiyse 1i bekleme main threadi sonlardır
 t2 = threading.Thread(target=calistir2, args = ("thread-2", ))
 t3 = threading.Thread(target=calistir3, args = ("thread-3", ))
 
