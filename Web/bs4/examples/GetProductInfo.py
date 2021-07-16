@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from requests_html import HTMLSession
 
 
-class Product:
+class GetProductInfo:
     global session
     global html_text
     
@@ -43,5 +43,31 @@ class Product:
             qa_count = self.soup.find_all("a", attrs={"class","product-questions"})[0].text
             qa_count = qa_count.split(" ")
             return qa_count[0]
+        else:
+            return "-"
+
+    def getFavorite(self):
+        if self.soup.find_all("div", attrs={"class","fv-dt"}):
+            favorite = self.soup.find_all("div", attrs={"class","fv-dt"})[0].text
+            favorite = favorite.split(" ")
+            return favorite[0]
+        else:
+            return "-"
+
+    def getPrice(self):
+        if self.soup.find_all("span", attrs={"class","prc-org"}):
+            return self.soup.find_all("span", attrs={"class","prc-org"})[0].text
+        else:
+            return "-"
+    
+    def getDiscountedPrice(self):
+        if self.soup.find_all("span", attrs={"class","prc-slg"}):
+            return self.soup.find_all("span", attrs={"class","prc-slg"})[0].text
+        else:
+            return "-"
+
+    def getBasketPrice(self):
+        if self.soup.find_all("div", attrs={"class","pr-bx-pr-dsc"}):
+            return self.soup.find_all("div", attrs={"class","pr-bx-pr-dsc"})[0].span.text
         else:
             return "-"
