@@ -65,7 +65,7 @@ for row in rows:
     else:
         basket_price = "-"
     #------------------------------------------------------------------------------------------
-    #print(product_id, product_name, brand, seller, evaluation_count[0],qa_count[0],favorite[0],price,discounted_price,basket_price)
+    print(product_id, product_name, brand, seller, evaluation_count[0],qa_count[0],favorite[0],price,discounted_price,basket_price)
     cursor.execute("INSERT INTO product_details VALUES (?,?,?,?,?,?,?,?,?,?)", (product_id, product_name, brand, seller, evaluation_count[0],qa_count[0],favorite[0],price,discounted_price,basket_price))
     db.commit()
     #time.sleep(3)
