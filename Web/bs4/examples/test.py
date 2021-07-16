@@ -1,5 +1,5 @@
 from GetProductInfo import *
 
-product = Product("https://www.trendyol.com/samsung/smart-km-serisi-kumanda-bn59-01274a-p-39447446?boutiqueId=61&merchantId=201567")
+product = Product("https://www.trendyol.com/aqua-di-polo-1987/kadin-kol-saati-apl13c450d02-p-3908910")
 
-print(product.getProductBrand())
+print(product.getQACount())

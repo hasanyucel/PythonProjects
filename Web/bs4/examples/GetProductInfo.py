@@ -24,4 +24,24 @@ class Product:
         else:
             return "-"
     
-    
+    def getProductSeller(self):
+        if self.soup.find_all("div",attrs={"class","pr-mb-mn"}):
+            return self.soup.find_all("div",attrs={"class","pr-mb-mn"})[0].a["title"]
+        else:
+            return "-"
+
+    def getEvaluationCount(self):
+        if self.soup.find_all("a", attrs={"class","rvw-cnt-tx"}):
+            evaluation_count = self.soup.find_all("a", attrs={"class","rvw-cnt-tx"})[0].text
+            evaluation_count = evaluation_count.split(" ")
+            return evaluation_count[0]
+        else:
+            return "-"
+
+    def getQACount(self):
+        if self.soup.find_all("a", attrs={"class","product-questions"}):
+            qa_count = self.soup.find_all("a", attrs={"class","product-questions"})[0].text
+            qa_count = qa_count.split(" ")
+            return qa_count[0]
+        else:
+            return "-"
