@@ -8,7 +8,6 @@ class GetProductInfo:
         r = requests.get(link)
         self.data = json.loads(re.search(r'PRODUCT_DETAIL_APP_INITIAL_STATE__=(.*?\}\});', r.text).group(1))
         
-
     def getProductID(self):
         return self.data["product"]["id"]
 

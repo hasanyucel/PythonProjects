@@ -1,26 +1,30 @@
 from GetProductInfo import *
+from GetProducts import *
 import sqlite3,timeit,json
 from rich import print
 
-#db = sqlite3.connect('../veritabani.sqlite')
+#Kategori linklerini alır sqlite dbye
+##----------------------------------------------------------------------------
+#url = "https://www.trendyol.com/cep-telefonu-x-c103498"
+#products = GetProducts(url)
+#productCount = products.getTotalProductCount()
+#productPage = productCount / 24 
+#db = sqlite3.connect('veritabani.sqlite')
 #cursor = db.cursor()
-#cursor.execute("select * from products")
-#rows = cursor.fetchall()
+##cursor.execute("CREATE TABLE products (id, url)")
 #start = timeit.default_timer()
-#for row in rows:
-#    product = GetProductInfo(row[2])
-#    #print(product.getProductID())
-#    
+#urls = []
+#for i in range(1,int(productPage)+2):
+#    urls.append(url+"?pi="+str(i))
+#for url in urls:
+#    products = GetProducts(url)
+#    idAndUrl = products.getAllProductIdUrlDict()
+#    for x in idAndUrl:
+#        cursor.execute("INSERT INTO products VALUES (?,?)", (x,idAndUrl[x]))
+#    db.commit()
 #db.close()
 #stop = timeit.default_timer()
-#print('Time: ', stop - start)
-
-product = GetProductInfo("https://www.trendyol.com/apple/iphone-12-pro-max-512gb-mavi-cep-telefonu-apple-turkiye-garantili-p-65276594")
-print(product.getProductAllMerchantNames())
+#print('Time: ', stop - start) 
+##----------------------------------------------------------------------------
 
 
-#import requests, json, re, os
-#
-#r = requests.get("https://www.trendyol.com/cep-telefonu-x-c103498")
-#data = json.loads(re.search(r'__SEARCH_APP_INITIAL_STATE__=(.*?\}\});', r.text).group(1))
-#print(data)
