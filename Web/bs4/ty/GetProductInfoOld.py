@@ -1,10 +1,10 @@
 from bs4 import BeautifulSoup
 from requests_html import HTMLSession
 
-
 class GetProductInfo:
     global session
     global html_text
+
     
     def __init__(self,link):
         session = HTMLSession()

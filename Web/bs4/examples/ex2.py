@@ -5,7 +5,7 @@ import timeit
 
 db = sqlite3.connect('veritabani.sqlite')
 cursor = db.cursor()
-#cursor.execute("CREATE TABLE products (id, product, link)")
+cursor.execute("CREATE TABLE products (id, product, link)")
 url = 'https://www.trendyol.com/sr?wb=794&wc=110304'
 start = timeit.default_timer()
 for i in range(40):
