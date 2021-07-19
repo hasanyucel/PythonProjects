@@ -6,7 +6,7 @@ class GetProductInfo:
     
     def __init__(self,link):
         r = requests.get(link)
-        self.data = json.loads(re.search(r'PRODUCT_DETAIL_APP_INITIAL_STATE__=(.*?\}\});', r.text).group(1) )
+        self.data = json.loads(re.search(r'PRODUCT_DETAIL_APP_INITIAL_STATE__=(.*?\}\});', r.text).group(1))
         
 
     def getProductID(self):
@@ -39,9 +39,24 @@ class GetProductInfo:
     def getProductBrand(self):
         return self.data["product"]["metaBrand"]["name"]
 
-    def getProductSeller(self):
+    def getProductSellerName(self):
         return self.data["product"]["merchant"]["name"]
     
+    def getProductSellerScore(self):
+        return self.data["product"]["merchant"]["sellerScore"]
+
+    def getProductSellerCityName(self):
+        return self.data["product"]["merchant"]["cityName"]
+
+    def getProductSellerOfficialName(self):
+        return self.data["product"]["merchant"]["officialName"]
+    
+    def getProductSellerTaxNumber(self):
+        return self.data["product"]["merchant"]["taxNumber"]
+
+    def getProductURL(self):
+        return 'https://www.trendyol.com'+self.data["product"]["url"]
+
     def getProductRatingCount(self):
         return self.data["product"]["ratingScore"]["totalRatingCount"]
 
@@ -55,6 +70,15 @@ class GetProductInfo:
         return self.data["product"]["favoriteCount"]
 
     def getAllProductData(self):
-        return self.data
+        return self.data["product"]
 
+    def getProductMerhactCount(self):
+        return len(self.data["product"]["otherMerchants"]) + 1
+
+    def getProductAllMerchantNames(self):
+        merchants = ""
+        count = len(self.data["product"]["otherMerchants"])
+        for i in range (count):
+            merchants = merchants + "," + self.data["product"]["otherMerchants"][i]["merchant"]["name"]
+        return self.data["product"]["merchant"]["name"]+merchants
     

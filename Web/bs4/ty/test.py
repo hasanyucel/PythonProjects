@@ -15,5 +15,12 @@ from rich import print
 #stop = timeit.default_timer()
 #print('Time: ', stop - start)
 
-product = GetProductInfo("https://www.trendyol.com/apple/iphone-11-64gb-siyah-cep-telefonu-apple-turkiye-garantili-aksesuarsiz-kutu-p-64074791")
-print(product.getAllProductData())
+product = GetProductInfo("https://www.trendyol.com/apple/iphone-12-pro-max-512gb-mavi-cep-telefonu-apple-turkiye-garantili-p-65276594")
+print(product.getProductAllMerchantNames())
+
+
+#import requests, json, re, os
+#
+#r = requests.get("https://www.trendyol.com/cep-telefonu-x-c103498")
+#data = json.loads(re.search(r'__SEARCH_APP_INITIAL_STATE__=(.*?\}\});', r.text).group(1))
+#print(data)
