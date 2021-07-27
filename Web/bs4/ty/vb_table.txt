@@ -1,0 +1,21 @@
+CREATE TABLE "product_details" (
+	"product_id"	INTEGER NOT NULL,
+	"product_name"	TEXT NOT NULL,
+	"product_brand"	TEXT NOT NULL,
+	"product_orginal_price"	NUMERIC NOT NULL,
+	"product_selling_price"	NUMERIC NOT NULL,
+	"product_discounted_price"	NUMERIC NOT NULL,
+	"product_rating_count"	INTEGER,
+	"product_rating_average"	NUMERIC,
+	"product_comment_count"	INTEGER,
+	"product_favorite_count"	INTEGER,
+	"seller_name"	TEXT NOT NULL,
+	"seller_score"	NUMERIC,
+	"seller_tax_number"	NUMERIC,
+	"seller_city"	TEXT,
+	"seller_official_name"	TEXT,
+	"seller_count"	INTEGER,
+	"product_all_sellers"	TEXT,
+	"product_url"	TEXT,
+	PRIMARY KEY("product_id")
+);

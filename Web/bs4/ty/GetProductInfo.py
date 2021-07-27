@@ -61,7 +61,10 @@ class GetProductInfo:
         return self.data["product"]["merchant"]["name"]
     
     def getProductSellerScore(self):
-        return self.data["product"]["merchant"]["sellerScore"]
+        try:
+            return self.data["product"]["merchant"]["sellerScore"]
+        except:
+            return "-"
 
     def getProductSellerCityName(self):
         return self.data["product"]["merchant"]["cityName"]
