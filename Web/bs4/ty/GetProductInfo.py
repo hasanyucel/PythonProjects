@@ -1,12 +1,31 @@
 import requests, json, re, os
+from lxml import html
 
 class GetProductInfo:
 
     global data
     
+    #import json
+    #import requests
+    #from bs4 import BeautifulSoup
+    #
+    #url = "https://www.trendyol.com/xiaomi/64mp-note-9-pro-6gb-64gb-6-67-yesil-akilli-cep-telefonu-p-58882069"
+    #r = requests.get(url)
+    #soup = BeautifulSoup(r.content,'html.parser')
+    #script = soup.findAll('script')[11]
+    #fi = str(script).find('{')
+    #li = str(script).rfind('}') + 1
+    #data = str(script)[fi:li]
+    #
+    #print(json.loads(data))
+
     def __init__(self,link):
         r = requests.get(link)
-        self.data = json.loads(re.search(r'PRODUCT_DETAIL_APP_INITIAL_STATE__=(.*?\}\});', r.text).group(1))
+        tree = html.fromstring(r.content.decode("utf8"))
+        products = tree.xpath('/html/body/script[3]/text()')
+        fi = products[0].find('{')
+        li = products[0].rfind('};') + 1
+        self.data = json.loads(products[0][fi:li])
         
     def getProductID(self):
         return self.data["product"]["id"]
