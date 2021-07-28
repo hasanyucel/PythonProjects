@@ -27,4 +27,6 @@ from rich import print
 #print('Time: ', stop - start) 
 ##----------------------------------------------------------------------------
 
-
+url = "https://www.trendyol.com/gamepower/jin-siyah-7-1-kulakustu-kulaklik-p-85885621?boutiqueId=559106&merchantId=133183"
+product = GetProductInfo(url)
+print(product.getProductBarcode())

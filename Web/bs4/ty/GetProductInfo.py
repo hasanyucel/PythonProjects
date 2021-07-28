@@ -103,3 +103,5 @@ class GetProductInfo:
             merchants = merchants + "," + self.data["product"]["otherMerchants"][i]["merchant"]["name"]
         return self.data["product"]["merchant"]["name"]+merchants
     
+    def getProductBarcode(self):
+        return self.data["product"]["variants"][0]["barcode"]
