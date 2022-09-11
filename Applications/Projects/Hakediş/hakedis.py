@@ -82,8 +82,3 @@ def export_results(res_is_emri,res_name_surname):
     ws.append((res_is_emri,res_name_surname))
     wb.save("output.xlsx")
     wb.close()
-
-# login_gspn("https://gspn1.samsungcsportal.com/")
-# go_management()
-# read_data_from_txt('hakedisnote.txt')
-
